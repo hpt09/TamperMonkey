@@ -18,16 +18,22 @@
         // Check if it's a YouTube video URL and not already an embed
         if (url.includes('youtube.com/watch') && !url.includes('embed')) {
             const videoId = new URL(url).searchParams.get('v');
+            const playlistID = new URL(url).searchParams.get('list');
+            var embedUrl = '';
             if (videoId) {
-                const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                window.open(embedUrl, '_blank');
+               embedUrl = `https://www.youtube.com/embed/${videoId}?popout=1&autoplay=1&loop=0&controls=1&modestbranding=0&start=0`;
             }
+            if(playlistID) {
+                embedUrl = embedUrl + `&list=${playlistID}&listType=playlist`;
+            }
+            window.open(embedUrl, '_blank');
+
         }
     }
 
     function handleClick(event) {
         // Check if the clicked element is a link (<a>) and it contains a YouTube video URL
-        const link = event.target.closest('a[href*="/watch"]');
+        const link = event.target.closest('a[href*="/watch?v"]');
         if (link) {
             // Prevent the default navigation behavior
             event.preventDefault();
