@@ -21,7 +21,7 @@
             const playlistID = new URL(url).searchParams.get('list');
             var embedUrl = '';
             if (videoId) {
-               embedUrl = `https://www.youtube.com/embed/${videoId}?popout=1&autoplay=1&loop=0&controls=1&modestbranding=0&start=0`;
+               embedUrl = `https://www.youtube.com/embed/${videoId}?popout=1&autoplay=1&loop=0&start=0`;
             }
             if(playlistID) {
                 embedUrl = embedUrl + `&list=${playlistID}&listType=playlist`;
